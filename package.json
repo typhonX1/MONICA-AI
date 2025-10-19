@@ -1,0 +1,33 @@
+{
+  "name": "electron-gemini-chat",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "An Electron app simulating Gemini chat with API key input.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build:ts": "tsc",
+    "build:preload": "esbuild src/preload.ts --bundle --platform=node --format=cjs --outfile=dist/preload.js --external:electron",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+    "build": "npm run build:ts && npm run build:preload && npm run build:css",
+    "start": "npm run build && electron .",
+    "watch": "tsc -w"
+  },
+  "keywords": [],
+  "author": "Gemini",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/electron": "^1.6.0",
+    "@types/node": "^20.14.9",
+    "autoprefixer": "^10.4.19",
+    "electron": "^31.0.0",
+    "esbuild": "^0.25.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "undici-types": "^7.11.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
