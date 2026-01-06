@@ -1,0 +1,28 @@
+/* You can add any custom CSS here that Tailwind doesn't easily cover,
+   or more complex animations/overrides. */
+
+/* Custom scrollbar styling for a cleaner look */
+#chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+#chat-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+#chat-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+#chat-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Optional: Subtle focus outline for interactive elements */
+*:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* blue-500 with 50% opacity */
+}
+
+/* Animations for loading dots in chat bubbles */
+/* Defined in index.html <style> block for simplicity and direct access to @keyframes */
+/* Keeping this comment here to remind that custom animations go here or directly in HTML <style> */
