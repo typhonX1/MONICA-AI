@@ -1,0 +1,75 @@
+{
+  "name": "electron-gemini-chat",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "An Electron app simulating Gemini chat with API key input.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build:ts": "tsc",
+    "build:preload": "esbuild src/preload.ts --bundle --platform=node --format=cjs --outfile=dist/preload.js --external:electron",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+    "copy:html": "copyfiles index.html dist",
+    "build": "npm run build:ts && npm run build:preload && npm run build:css",
+    "start": "npm run build && electron-forge start",
+    "watch": "tsc -w",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "keywords": [],
+  "author": "Gemini",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@types/electron": "^1.6.0",
+    "@types/node": "^20.19.27",
+    "autoprefixer": "^10.4.19",
+    "copyfiles": "^2.4.1",
+    "electron": "^31.0.0",
+    "esbuild": "^0.25.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "undici-types": "^7.11.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "electron": "^latest",
+    "electron-serve": "^3.0.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "firebase": "^10.7.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_gemini_chat"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
